@@ -97,7 +97,37 @@ namespace ConfigurationLibrary
             //Close The Connection
         }
 
-        
+        public async Task<T> ExecuteScaler<T>(string sql, object? parameters) 
+        {
+            T? Result;
+            try
+            {
+                OleDbConnection conn = GetConnection();
+                try
+                {
+                    //Open Connection
+                    await conn.OpenAsync();
+                    Result = await conn.ExecuteScalarAsync<T>(sql, parameters);
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    await conn.CloseAsync().ConfigureAwait(false);
+                }
+                return Result;
+            }
+            catch (InvalidConnectionString)
+            {
+
+                throw;
+            }
+            //run Query
+            //Close The Connection
+        }
         #endregion
     }
 }

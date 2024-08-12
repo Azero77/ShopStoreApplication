@@ -1,4 +1,5 @@
 ﻿using ShopApplication.Services;
+using ShopApplication.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,22 +10,21 @@ namespace ShopApplication.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private ViewModelBase currentViewModel;
-
-        public ViewModelBase CurrentViewModel 
-        {   get => currentViewModel;
-            set 
-            {
-                currentViewModel = value;
-            }
-        }
-
+        public NavigationStore NavigationStore { get; set; }
+        public ViewModelBase CurrentViewModel => NavigationStore.CurrentViewModel;
         public DataAdapterClient DataAdapterClient { get; }
 
-        public MainViewModel(DataAdapterClient dataAdapterClient)
+        public MainViewModel(DataAdapterClient dataAdapterClient, NavigationStore store)
         {
             DataAdapterClient = dataAdapterClient;
-            CurrentViewModel = new ProductsListingViewModel(DataAdapterClient);
+            
+            NavigationStore = store;
+            NavigationStore.CurrentViewModelChagned += CurrentViewModelChanged;
+        }
+
+        private void CurrentViewModelChanged()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
 }

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 E:\WPF\ShopApplicationSolution\ShopApplication\App.xaml
-2-488374989
+3-434294440
 
-11554097903
+231516528788
 209-1762341401
-MainWindow.xaml;Views\ProductsListingView.xaml;
+MainWindow.xaml;Views\MakeProductView.xaml;Views\ProductsListingView.xaml;
 
 False
 

@@ -1,5 +1,6 @@
 ﻿using ConfigurationLibrary;
 using ShopApplication.Services;
+using ShopApplication.Stores;
 using ShopApplication.ViewModels;
 using System.Configuration;
 using System.Data;
@@ -17,9 +18,11 @@ namespace ShopApplication
         {
             DataAccessClient dataAccessClient = new();
             DataAdapterClient dataAdapterClient = new(dataAccessClient);
+            NavigationStore navigationStore = new();
+            navigationStore.CurrentViewModel = new ProductsListingViewModel(dataAdapterClient,navigationStore);
             MainWindow window = new MainWindow()
             {
-                DataContext = new MainViewModel(dataAdapterClient)
+                DataContext = new MainViewModel(dataAdapterClient,navigationStore)
             };
             window.Show();
         }

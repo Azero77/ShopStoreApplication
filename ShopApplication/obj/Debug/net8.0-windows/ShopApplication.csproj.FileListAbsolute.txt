@@ -37,3 +37,5 @@ E:\WPF\ShopApplicationSolution\ShopApplication\bin\Debug\net8.0-windows\Configur
 E:\WPF\ShopApplicationSolution\ShopApplication\bin\Debug\net8.0-windows\ConfigurationLibrary.pdb
 E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\ShopApplication.csproj.AssemblyReference.cache
 E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\ShopApplication.csproj.CopyComplete
+E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\Views\MakeProductView.g.cs
+E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\Views\MakeProductView.baml
