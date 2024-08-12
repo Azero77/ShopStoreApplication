@@ -33,6 +33,38 @@ namespace ConfigurationLibrary
         }
 
         #region Select
+
+        public async Task<IEnumerable<T>> Query<T>(string sql)
+        {
+            IEnumerable<T>? Result;
+            try
+            {
+                OleDbConnection conn = GetConnection();
+                try
+                {
+                    //Open Connection
+                    await conn.OpenAsync();
+                    Result = await conn.QueryAsync<T>(sql);
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    await conn.CloseAsync().ConfigureAwait(false);
+                }
+                return Result;
+            }
+            catch (InvalidConnectionString)
+            {
+
+                throw;
+            }
+            //run Query
+            //Close The Connection
+        }
         public async Task<IEnumerable<T>> Query<T>(string sql, object parameters)
         {
             IEnumerable<T>? Result;
@@ -64,6 +96,8 @@ namespace ConfigurationLibrary
             //run Query
             //Close The Connection
         }
+
+        
         #endregion
     }
 }
