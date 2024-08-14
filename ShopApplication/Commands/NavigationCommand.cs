@@ -11,12 +11,12 @@ namespace ShopApplication.Commands
     public class NavigationCommand<TViewModel> : CommandBase
         where TViewModel : ViewModelBase
     {
-        public NavigationCommand(NavigationService<TViewModel> navigationService)
+        public NavigationCommand(NavigationService<ViewModelBase> navigationService)
         {
             NavigationService = navigationService;
         }
 
-        public NavigationService<TViewModel> NavigationService { get; }
+        public NavigationService<ViewModelBase> NavigationService { get; }
 
         public override void Execute(object? parameter)
         {

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConfigurationLibrary\ConfigurationLibrary.csproj" />
+    <ProjectReference Include="..\ResourceDictionaries\ResourceDictionaries.csproj" />
   </ItemGroup>
 
 </Project>

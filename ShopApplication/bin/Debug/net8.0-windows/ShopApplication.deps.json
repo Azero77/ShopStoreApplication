@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v8.0": {
       "ShopApplication/1.0.0": {
         "dependencies": {
-          "ConfigurationLibrary": "1.0.0"
+          "ConfigurationLibrary": "1.0.0",
+          "ResourceDictionaries": "1.0.0"
         },
         "runtime": {
           "ShopApplication.dll": {}
@@ -164,6 +165,11 @@
         "runtime": {
           "ConfigurationLibrary.dll": {}
         }
+      },
+      "ResourceDictionaries/1.0.0": {
+        "runtime": {
+          "ResourceDictionaries.dll": {}
+        }
       }
     }
   },
@@ -286,6 +292,11 @@
       "hashPath": "system.text.json.8.0.0.nupkg.sha512"
     },
     "ConfigurationLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ResourceDictionaries/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

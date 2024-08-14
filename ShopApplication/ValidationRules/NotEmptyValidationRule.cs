@@ -12,7 +12,7 @@ namespace ShopApplication.ValidationRules
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (string.IsNullOrEmpty(value.ToString()))
+            if (string.IsNullOrEmpty(value?.ToString()))
                 return new ValidationResult(false, "Field Cannot Be Empty");
             return new ValidationResult(true, null);
         }

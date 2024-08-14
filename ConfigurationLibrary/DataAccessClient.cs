@@ -129,5 +129,36 @@ namespace ConfigurationLibrary
             //Close The Connection
         }
         #endregion
+        #region Edit
+        public async Task<int> Execute(string sql, object param)
+        {
+            OleDbConnection conn = GetConnection();
+            int Result;
+            try
+            {
+                await conn.OpenAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            try
+            {
+                Result = conn.Execute(sql, param);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally 
+            {
+                await conn.CloseAsync();
+            }
+            return Result;
+
+        }
+        #endregion
     }
 }

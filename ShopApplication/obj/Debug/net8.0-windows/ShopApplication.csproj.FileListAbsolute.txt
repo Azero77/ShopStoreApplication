@@ -39,3 +39,7 @@ E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\ShopAppl
 E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\ShopApplication.csproj.CopyComplete
 E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\Views\MakeProductView.g.cs
 E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\Views\MakeProductView.baml
+E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\App.baml
+E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\Views\Style.baml
+E:\WPF\ShopApplicationSolution\ShopApplication\bin\Debug\net8.0-windows\ResourceDictionaries.dll
+E:\WPF\ShopApplicationSolution\ShopApplication\bin\Debug\net8.0-windows\ResourceDictionaries.pdb

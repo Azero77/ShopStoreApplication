@@ -8,6 +8,19 @@ namespace ShopApplication.Models
 {
     public class Product
     {
+        public Product(int id, int? categoryId, int? modelNumber, string? modelName, decimal? cost, string? description)
+        {
+            Id = id;
+            CategoryId = categoryId;
+            ModelNumber = modelNumber;
+            ModelName = modelName;
+            Cost = cost;
+            Description = description;
+        }
+        public Product()
+        {
+            
+        }
         public int Id { get; set; }
         public int? CategoryId { get; set; }
         public int? ModelNumber { get; set; }

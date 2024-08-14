@@ -28,21 +28,23 @@ namespace ShopApplication.ViewModels
 			}
 		}
 		public int ProductsCount => ProductsCollection.Count();
-		public NavigationService<MakeProductViewModel> MakeProductViewModelNavigationService { get; set; }
+		public NavigationService<ViewModelBase> MakeProductViewModelNavigationService { get; set; }
 
         public DataAdapterClient DataAdapterClient { get; }
+        public NavigationStore NavigationStore { get; }
 
         public ProductsListingViewModel(DataAdapterClient dataAdapterClient, NavigationStore navigationStore)
         {
             DataAdapterClient = dataAdapterClient;
-			_ = InitializeCollection();
+            NavigationStore = navigationStore;
+            _ = InitializeCollection();
 			MakeProductViewModelNavigationService = new(navigationStore,
 				(obj) => {
 					Product? p = obj as Product;
 					if (p is null)
-						return new MakeProductViewModel(DataAdapterClient,ProductsCount);
+						return new MakeProductViewModel(DataAdapterClient,NavigationStore,ProductsCount);
 					
-					return new MakeProductViewModel(DataAdapterClient, p);
+					return new MakeProductViewModel(DataAdapterClient, NavigationStore,p);
 				});
 			ViewProductCommand = new NavigationCommand<MakeProductViewModel>(
 				MakeProductViewModelNavigationService

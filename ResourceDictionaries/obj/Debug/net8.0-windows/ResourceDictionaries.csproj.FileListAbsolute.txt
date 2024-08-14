@@ -1,0 +1,15 @@
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\bin\Debug\net8.0-windows\ResourceDictionaries.deps.json
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\bin\Debug\net8.0-windows\ResourceDictionaries.dll
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\bin\Debug\net8.0-windows\ResourceDictionaries.pdb
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\Styles\ButtonStyle.baml
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ResourceDictionaries_MarkupCompile.cache
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ResourceDictionaries.g.resources
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ResourceDictionaries.GeneratedMSBuildEditorConfig.editorconfig
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ResourceDictionaries.AssemblyInfoInputs.cache
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ResourceDictionaries.AssemblyInfo.cs
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ResourceDictionaries.csproj.CoreCompileInputs.cache
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ResourceDictionaries.dll
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\refint\ResourceDictionaries.dll
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ResourceDictionaries.pdb
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ref\ResourceDictionaries.dll
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\Styles\UserControlStyle.baml

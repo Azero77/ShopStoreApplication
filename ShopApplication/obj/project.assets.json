@@ -344,6 +344,19 @@
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
         ]
+      },
+      "ResourceDictionaries/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ResourceDictionaries.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ResourceDictionaries.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
@@ -898,11 +911,17 @@
       "type": "project",
       "path": "../ConfigurationLibrary/ConfigurationLibrary.csproj",
       "msbuildProject": "../ConfigurationLibrary/ConfigurationLibrary.csproj"
+    },
+    "ResourceDictionaries/1.0.0": {
+      "type": "project",
+      "path": "../ResourceDictionaries/ResourceDictionaries.csproj",
+      "msbuildProject": "../ResourceDictionaries/ResourceDictionaries.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "ConfigurationLibrary >= 1.0.0"
+      "ConfigurationLibrary >= 1.0.0",
+      "ResourceDictionaries >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -934,6 +953,9 @@
           "projectReferences": {
             "E:\\WPF\\ShopApplicationSolution\\ConfigurationLibrary\\ConfigurationLibrary.csproj": {
               "projectPath": "E:\\WPF\\ShopApplicationSolution\\ConfigurationLibrary\\ConfigurationLibrary.csproj"
+            },
+            "E:\\WPF\\ShopApplicationSolution\\ResourceDictionaries\\ResourceDictionaries.csproj": {
+              "projectPath": "E:\\WPF\\ShopApplicationSolution\\ResourceDictionaries\\ResourceDictionaries.csproj"
             }
           }
         }

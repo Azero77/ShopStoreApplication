@@ -7,113 +7,186 @@
              xmlns:converters="clr-namespace:ShopApplication.Converters"
              xmlns:validators="clr-namespace:ShopApplication.ValidationRules"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.Resources>
-            <validators:NotEmptyValidationRule x:Key="NotEmptyValidator"/>
-        </Grid.Resources>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+             d:DesignHeight="450" d:DesignWidth="800"
+             Style="{DynamicResource UserControlStyle}"
+             Validation.Error="UserControl_Error"
+             >
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type ValidationError}">
+            <TextBlock Text="{Binding ErrorContent}"/>
+        </DataTemplate>
+        <converters:ListToStringConverter
+            x:Key="ListToStringConverter"/>
+    </UserControl.Resources>
+    <VirtualizingStackPanel>
+        <Grid>
+            <Grid.Resources>
+                <validators:NotEmptyValidationRule x:Key="NotEmptyValidator"/>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="5,0,5,10" />
+                    <Setter Property="Padding" Value="3" />
+                    <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
+                    <Setter Property="Template"  >
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <StackPanel>
+                                    <Border
+                                        Name="Border"
+                                        CornerRadius="3"
+                                        BorderBrush="Black"
+                                        BorderThickness="1">
+                                        <ScrollViewer  x:Name="PART_ContentHost"/>
+                                    </Border>
+                                    <TextBlock
+                                        Visibility="Collapsed"
+                                        Foreground="Red"
+                                        Text="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(Validation.Errors),Converter={StaticResource ListToStringConverter}}"
+                                        Name="ErrorContent"
+                                        VerticalAlignment="Bottom"
+                                        />
+                                </StackPanel>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="Validation.HasError" Value="True">
+                                        <Setter TargetName="Border" Property="BorderBrush" Value="Red"/>
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="2,4"/>
+                                        <Setter TargetName="ErrorContent"  Property="Visibility" Value="Visible" />
 
-        <Label
-            Content="Id"/>
-        <TextBox
-            IsEnabled="False"
-            Grid.Row="0"
-            Grid.Column="1"
-            Text="{Binding Id}"
-            />
-        <Label
-            Grid.Row="1"
-            Grid.Column="0"
-            Content="Category"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="inputStyle" TargetType="Control">
+                    <Setter Property="Margin" Value="5,10" />
+                    <Setter Property="Padding" Value="3" />
+                </Style>
 
-        <!--ValueConverter From CategoryId To CategoryName-->
-        <ComboBox
-            Grid.Row="1"
-            Grid.Column="1"
-            ItemsSource="{Binding Categories}"
-            >
-            <ComboBox.SelectedItem>
-                <Binding Path="Category">
-                    <Binding.ValidationRules>
-                        <validators:NotEmptyValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </ComboBox.SelectedItem>
-        </ComboBox>
-        <Label
-            Content="Model Number"
-            Grid.Row="2"
-            Grid.Column="0"/>
-        <TextBox
-            Grid.Row="2"
-            Grid.Column="1">
-            <TextBox.Text>
-                <Binding Path="ModelNumber">
-                    <Binding.ValidationRules>
-                        <validators:PositiveIntegerValidationRule/>
-                        <validators:NotEmptyValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Label
-            Content="Model Name"
-            Grid.Row="3"
-            Grid.Column="0"/>
-        <TextBox
-            Grid.Row="3"
-            Grid.Column="1">
-            <TextBox.Text>
-                <Binding Path="ModelName">
-                    <Binding.ValidationRules>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                        <validators:NotEmptyValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Label
-            Content="Cost"
-            Grid.Row="4"/>
-        <TextBox
-            Grid.Row="4"
-            Grid.Column="1">
-            <TextBox.Text>
-                <Binding Path="Cost">
-                    <Binding.ValidationRules>
-                        <validators:PositiveIntegerValidationRule/>
-                        <validators:NotEmptyValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Label
-            Content="Description"
-            Grid.Row="5"
-            Grid.Column="0"/>
-        <TextBox
-            Grid.Row="5"
-            Grid.Column="1">
-            <TextBox.Text>
-                <Binding Path="Description">
-                    <Binding.ValidationRules>
-                        <validators:NotEmptyValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-    </Grid>
+            <Label
+                Content="Id"/>
+            <TextBox
+                IsEnabled="False"
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding Id}"
+                />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Content="Category"/>
+
+            <!--ValueConverter From CategoryId To CategoryName-->
+            <ComboBox
+                Style="{StaticResource inputStyle}"
+                Grid.Row="1"
+                Grid.Column="1"
+                ItemsSource="{Binding Categories}"
+                >
+                <ComboBox.SelectedItem>
+                    <Binding Path="Category">
+                        <Binding.ValidationRules>
+                            <validators:NotEmptyValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </ComboBox.SelectedItem>
+            </ComboBox>
+            <Label
+                Content="Model Number"
+                Grid.Row="2"
+                Grid.Column="0"/>
+            <StackPanel
+                Grid.Row="2"
+                Grid.Column="1">
+                <TextBox
+                    Name="ModelNumberTextBox">
+
+                    <TextBox.Text>
+                        <Binding
+                            Path="ModelNumber" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:NotEmptyValidationRule/>
+                                <validators:PositiveIntegerValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </StackPanel>
+            <Label
+                Content="Model Name"
+                Grid.Row="3"
+                Grid.Column="0"/>
+            <TextBox
+                Grid.Row="3"
+                Grid.Column="1">
+                <TextBox.Text>
+                    <Binding Path="ModelName">
+                        <Binding.ValidationRules>
+
+                            <validators:NotEmptyValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label
+                Content="Cost"
+                Grid.Row="4"/>
+            <TextBox
+                Grid.Row="4"
+                Grid.Column="1">
+                <TextBox.Text>
+                    <Binding Path="Cost">
+                        <Binding.ValidationRules>
+                            <validators:NotEmptyValidationRule/>
+                            <validators:PositiveIntegerValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label
+                Content="Description"
+                Grid.Row="5"
+                Grid.Column="0"/>
+            <TextBox
+                Grid.Row="5"
+                Grid.Column="1">
+                <TextBox.Text>
+                    <Binding Path="Description">
+                        <Binding.ValidationRules>
+                            <validators:NotEmptyValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <DockPanel
+                HorizontalAlignment="Right"
+                Grid.Row="6"
+                Grid.ColumnSpan="2">
+                <Button Content="Submit"
+                        Command="{Binding EditProductCommand}"
+                        CommandParameter="{Binding}"
+
+                        DockPanel.Dock="Right"/>
+                <Button Content="Cancel"
+                        Command="{Binding NavigationToProductListingViewCommand}"
+                        HorizontalAlignment="Left"
+                        DockPanel.Dock="Left"/>
+
+            </DockPanel>
+        </Grid>
+    </VirtualizingStackPanel>
 </UserControl>

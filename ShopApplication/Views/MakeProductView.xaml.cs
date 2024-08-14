@@ -29,30 +29,10 @@ namespace ShopApplication.Views
 
         }
 
-        /*private void ComboBox_Loaded(object sender, RoutedEventArgs e)
+
+        private void UserControl_Error(object sender, ValidationErrorEventArgs e)
         {
-            ComboBox box = (ComboBox)sender;
-            
-            BindingExpression bindingExpression = box.GetBindingExpression(ComboBox.SelectedItemProperty);
-            if (bindingExpression is not null)
-            {
-                Binding binding = bindingExpression.ParentBinding;
-                var viewModel = (MakeProductViewModel)this.DataContext;
-                Binding newBinding = new Binding()
-                {
-                    Path = binding.Path,
-                    Converter = new CategoryConverter()
-                    {
-                        CategoryDictionary =
-                    viewModel.Categories!.ToDictionary
-                    ((c) => c.Id , (c) => c.Name)!
-                    }
-            };
-                box.SetBinding(ComboBox.SelectedItemProperty, newBinding);
-                var result = viewModel.Categories.First(c => viewModel.CategoryId == c.Id);
-                box.SelectedItem = result;
-                MessageBox.Show(box.SelectedItem.ToString());
-            }
-        }*/
+
+        }
     }
 }
