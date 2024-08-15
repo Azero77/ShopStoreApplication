@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ResourceDictionaries")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cdd62db45b0113ce903a8b7c654fb6095b53d2e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf0f2f8ced96495ffc8959dc4443b4dbe21ea4f8")]
 [assembly: System.Reflection.AssemblyProductAttribute("ResourceDictionaries")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ResourceDictionaries")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -28,5 +28,14 @@ namespace ShopApplication.Models
         public decimal? Cost { get; set; }
         public string? Description { get; set; }
 
+        public void EditProduct(Product p) 
+        {
+            Id = p.Id;
+            CategoryId = p.CategoryId;
+            ModelNumber = p.ModelNumber;
+            ModelName = p.ModelName;
+            Cost = p.Cost;
+            Description = p.Description;
+        }
     }
 }

@@ -7,9 +7,10 @@
              xmlns:converters="clr-namespace:ShopApplication.Converters"
              xmlns:validators="clr-namespace:ShopApplication.ValidationRules"
              mc:Ignorable="d"
+             Name="MakeProductUserControl"
+             Validation.Error="UserControl_Error"
              d:DesignHeight="450" d:DesignWidth="800"
              Style="{DynamicResource UserControlStyle}"
-             Validation.Error="UserControl_Error"
              >
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ValidationError}">
@@ -17,6 +18,8 @@
         </DataTemplate>
         <converters:ListToStringConverter
             x:Key="ListToStringConverter"/>
+        <converters:InverseBooleanConverter
+            x:Key="InverseBooleanConverter"/>
     </UserControl.Resources>
     <VirtualizingStackPanel>
         <Grid>
@@ -117,6 +120,7 @@
 
                     <TextBox.Text>
                         <Binding
+                            NotifyOnValidationError="True"
                             Path="ModelNumber" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:NotEmptyValidationRule/>
@@ -134,7 +138,9 @@
                 Grid.Row="3"
                 Grid.Column="1">
                 <TextBox.Text>
-                    <Binding Path="ModelName">
+                    <Binding Path="ModelName"
+                             NotifyOnValidationError="True"
+                             >
                         <Binding.ValidationRules>
 
                             <validators:NotEmptyValidationRule/>
@@ -149,7 +155,9 @@
                 Grid.Row="4"
                 Grid.Column="1">
                 <TextBox.Text>
-                    <Binding Path="Cost">
+                    <Binding Path="Cost"
+                             NotifyOnValidationError="True"
+                             >
                         <Binding.ValidationRules>
                             <validators:NotEmptyValidationRule/>
                             <validators:PositiveIntegerValidationRule/>
@@ -165,7 +173,9 @@
                 Grid.Row="5"
                 Grid.Column="1">
                 <TextBox.Text>
-                    <Binding Path="Description">
+                    <Binding Path="Description"
+                             NotifyOnValidationError="True"
+                             >
                         <Binding.ValidationRules>
                             <validators:NotEmptyValidationRule/>
                         </Binding.ValidationRules>
@@ -179,10 +189,12 @@
                 <Button Content="Submit"
                         Command="{Binding EditProductCommand}"
                         CommandParameter="{Binding}"
-
+                        Name="SubmitButton"
                         DockPanel.Dock="Right"/>
                 <Button Content="Cancel"
                         Command="{Binding NavigationToProductListingViewCommand}"
+
+                        IsEnabled="{Binding ElementName=MakeProductUserControl, Path=(Validation.HasError),Converter={StaticResource InverseBooleanConverter}}"
                         HorizontalAlignment="Left"
                         DockPanel.Dock="Left"/>
 

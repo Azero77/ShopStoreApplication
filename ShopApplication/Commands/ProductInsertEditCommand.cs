@@ -1,5 +1,6 @@
 ﻿using ShopApplication.Models;
 using ShopApplication.Services;
+using ShopApplication.Stores;
 using ShopApplication.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace ShopApplication.Commands
 {
     public class ProductInsertEditCommand : ProductEditCommand
     {
-        public ProductInsertEditCommand(NavigationService<ViewModelBase> navigationService, DataAdapterClient dataAdapterClient) : base(navigationService, dataAdapterClient)
+        public ProductInsertEditCommand(NavigationService<ViewModelBase> navigationService, DataAdapterClient dataAdapterClient,ShopStore shopStore) : base(navigationService, dataAdapterClient,shopStore)
         {
         }
 
@@ -32,6 +33,7 @@ namespace ShopApplication.Commands
             int Result = await DataAdapterClient.NewProduct(SelectedProduct);
             if (Result != 1)
                 throw new InvalidDataException();
+            ShopStore.CreateElement(SelectedProduct);
             base.Execute(parameter);
         }
     }

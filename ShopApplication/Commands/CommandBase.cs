@@ -17,7 +17,7 @@ namespace ShopApplication.Commands
         }
 
         public abstract void Execute(object? parameter);
-        protected void OnCanExecuteChanged() 
+        public void OnCanExecuteChanged() 
         {
             CanExecuteChanged?.Invoke(this, new EventArgs());
         }

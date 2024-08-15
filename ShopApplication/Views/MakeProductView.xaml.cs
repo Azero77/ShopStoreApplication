@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Schema;
 
 namespace ShopApplication.Views
 {
@@ -26,13 +27,12 @@ namespace ShopApplication.Views
         {
             InitializeComponent();
             
-
         }
-
 
         private void UserControl_Error(object sender, ValidationErrorEventArgs e)
         {
-
+            if (e.Action == ValidationErrorEventAction.Added)
+                SubmitButton.IsEnabled = false;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ShopApplication.Services;
+using ShopApplication.Stores;
 using ShopApplication.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace ShopApplication.Commands
 {
     public class ProductUpdateEditCommand : ProductEditCommand
     {
-        public ProductUpdateEditCommand(NavigationService<ViewModelBase> navigationService, DataAdapterClient dataAdapterClient) : base(navigationService, dataAdapterClient)
+        public ProductUpdateEditCommand(NavigationService<ViewModelBase> navigationService, DataAdapterClient dataAdapterClient,ShopStore shopStore) : base(navigationService, dataAdapterClient,shopStore)
         {
         }
 
@@ -28,6 +29,7 @@ namespace ShopApplication.Commands
                 ProductViewModel.Description
                 );
             await DataAdapterClient.UpdateProduct(SelectedProduct);
+            ShopStore.AlterElement(SelectedProduct);
             base.Execute(parameter);
         }
     }

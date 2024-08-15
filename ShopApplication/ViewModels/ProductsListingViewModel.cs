@@ -32,19 +32,22 @@ namespace ShopApplication.ViewModels
 
         public DataAdapterClient DataAdapterClient { get; }
         public NavigationStore NavigationStore { get; }
+        public ShopStore ShopStore { get; }
 
-        public ProductsListingViewModel(DataAdapterClient dataAdapterClient, NavigationStore navigationStore)
+        public ProductsListingViewModel(DataAdapterClient dataAdapterClient, NavigationStore navigationStore,ShopStore shopStore)
         {
             DataAdapterClient = dataAdapterClient;
             NavigationStore = navigationStore;
-            _ = InitializeCollection();
+            ShopStore = shopStore;
+            //_ = InitializeCollection();
+			ProductsCollection = new(ShopStore.Products);
 			MakeProductViewModelNavigationService = new(navigationStore,
 				(obj) => {
 					Product? p = obj as Product;
 					if (p is null)
-						return new MakeProductViewModel(DataAdapterClient,NavigationStore,ProductsCount);
+						return new MakeProductViewModel(DataAdapterClient,NavigationStore,ProductsCount,ShopStore);
 					
-					return new MakeProductViewModel(DataAdapterClient, NavigationStore,p);
+					return new MakeProductViewModel(DataAdapterClient, NavigationStore,p,ShopStore);
 				});
 			ViewProductCommand = new NavigationCommand<MakeProductViewModel>(
 				MakeProductViewModelNavigationService
@@ -54,10 +57,10 @@ namespace ShopApplication.ViewModels
         #region Commands
 		public ICommand ViewProductCommand { get; set; }
         #endregion
-        private async Task InitializeCollection()
+        /*private async Task InitializeCollection()
         {
 			var products = await DataAdapterClient.GetProducts();
 			ProductsCollection = new(products);
-        }
+        }*/
     }
 }
