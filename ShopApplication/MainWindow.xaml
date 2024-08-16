@@ -6,9 +6,19 @@
         xmlns:local="clr-namespace:ShopApplication"
         xmlns:views="clr-namespace:ShopApplication.Views"
         xmlns:vms ="clr-namespace:ShopApplication.ViewModels"
+        xmlns:converters="clr-namespace:ShopApplication.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <converters:MessegeTypeToStyleConverter
+            x:Key="MessegeTypeToStyleConverter"/>
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vms:ProductsListingViewModel}">
                 <ContentControl>
@@ -20,7 +30,22 @@
                     <views:MakeProductView/>
                 </ContentControl>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:MessegeViewModel}">
+                <ContentControl>
+                    <views:MessegeView/>
+                </ContentControl>
+            </DataTemplate>
         </Grid.Resources>
-        <ContentControl Content="{Binding CurrentViewModel}"/>
+        <Border
+            Style="{Binding CurrentMessegeViewModel.MessegeType, Converter={StaticResource MessegeTypeToStyleConverter}}">
+            <ContentControl
+                Grid.Row="0"
+                Content="{Binding CurrentMessegeViewModel}">
+            </ContentControl>
+        </Border>
+
+        <ContentControl
+            Grid.Row="1"
+            Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

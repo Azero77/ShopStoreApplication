@@ -13,21 +13,23 @@ namespace ShopApplication.Commands
 {
     public abstract class ProductEditCommand : CommandBase
     {
-        public ProductEditCommand(NavigationService<ViewModelBase> navigationService, DataAdapterClient dataAdapterClient,ShopStore shopStore)
+        public ProductEditCommand(NavigationService<ViewModelBase> navigationService, DataAdapterClient dataAdapterClient,ShopStore shopStore,MessegeStore messegeStore)
         {
             NavigationService = navigationService;
             DataAdapterClient = dataAdapterClient;
             ShopStore = shopStore;
+            MessegeStore = messegeStore;
         }
         public Product? SelectedProduct { get; set; }
 
         public NavigationService<ViewModelBase> NavigationService { get; }
         public DataAdapterClient DataAdapterClient { get; }
         public ShopStore ShopStore { get; }
+        public MessegeStore MessegeStore { get; }
 
         public override void Execute(object? parameter) 
         {
-            MessageBox.Show("Operation Successed");
+            MessegeStore.SetMessege("Operation Succeded", Messege.Status);
             NavigationService.Navigate(null);
         }
         public override bool CanExecute(object? parameter)

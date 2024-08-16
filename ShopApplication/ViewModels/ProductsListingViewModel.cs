@@ -33,8 +33,9 @@ namespace ShopApplication.ViewModels
         public DataAdapterClient DataAdapterClient { get; }
         public NavigationStore NavigationStore { get; }
         public ShopStore ShopStore { get; }
+        public MessegeStore MessegeStore { get; }
 
-		private bool _isLoading;
+        private bool _isLoading;
 		public bool IsLoading
 		{
 			get
@@ -48,21 +49,25 @@ namespace ShopApplication.ViewModels
 			}
 		}
 
-		public ProductsListingViewModel(DataAdapterClient dataAdapterClient, NavigationStore navigationStore,ShopStore shopStore)
+		public ProductsListingViewModel(DataAdapterClient dataAdapterClient,
+			NavigationStore navigationStore,
+			ShopStore shopStore,
+			MessegeStore messegeStore)
         {
             DataAdapterClient = dataAdapterClient;
             NavigationStore = navigationStore;
             ShopStore = shopStore;
+            MessegeStore = messegeStore;
             //_ = InitializeCollection();
-			ProductsCollection = new(ShopStore.Products);
+            ProductsCollection = new(ShopStore.Products);
             ShopStore.CollectionChanged += ShopStore_CollectionChanged;
 			MakeProductViewModelNavigationService = new(navigationStore,
 				(obj) => {
 					Product? p = obj as Product;
 					if (p is null)
-						return new MakeProductViewModel(DataAdapterClient,NavigationStore,ProductsCount,ShopStore);
+						return new MakeProductViewModel(DataAdapterClient,NavigationStore,ProductsCount,ShopStore,MessegeStore);
 					
-					return new MakeProductViewModel(DataAdapterClient, NavigationStore,p,ShopStore);
+					return new MakeProductViewModel(DataAdapterClient, NavigationStore,p,ShopStore,MessegeStore);
 				});
 			ViewProductCommand = new NavigationCommand<MakeProductViewModel>(
 				MakeProductViewModelNavigationService
@@ -72,12 +77,14 @@ namespace ShopApplication.ViewModels
         public static ProductsListingViewModel LoadProductsListringViewModel(
 			DataAdapterClient dataAdapterClient,
 			NavigationStore navigationStore,
-			ShopStore shopStore)
+			ShopStore shopStore,
+			MessegeStore messegeStore)
 		{
 			ProductsListingViewModel viewModel = new ProductsListingViewModel(
 				dataAdapterClient,
 				navigationStore,
-				shopStore);
+				shopStore,
+				messegeStore);
 			viewModel.LoadProductsCommand.Execute(null);
 			return viewModel;
 		}

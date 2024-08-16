@@ -13,3 +13,4 @@ E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ref
 E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ResourceDictionaries.pdb
 E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\ref\ResourceDictionaries.dll
 E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\Styles\UserControlStyle.baml
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\obj\Debug\net8.0-windows\Styles\StyleSelectors.baml

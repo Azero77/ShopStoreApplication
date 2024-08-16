@@ -11,7 +11,7 @@ namespace ShopApplication.Commands
 {
     public class ProductUpdateEditCommand : ProductEditCommand
     {
-        public ProductUpdateEditCommand(NavigationService<ViewModelBase> navigationService, DataAdapterClient dataAdapterClient,ShopStore shopStore) : base(navigationService, dataAdapterClient,shopStore)
+        public ProductUpdateEditCommand(NavigationService<ViewModelBase> navigationService, DataAdapterClient dataAdapterClient,ShopStore shopStore,MessegeStore messegeStore) : base(navigationService, dataAdapterClient,shopStore,messegeStore)
         {
         }
 

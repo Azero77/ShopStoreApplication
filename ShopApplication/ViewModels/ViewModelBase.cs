@@ -15,5 +15,7 @@ namespace ShopApplication.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public MessegeViewModel MessegeIndicatorViewModel { get; set; }
     }
 }

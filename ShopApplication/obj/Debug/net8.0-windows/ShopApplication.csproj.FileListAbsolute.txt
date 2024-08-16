@@ -44,3 +44,5 @@ E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\Views\St
 E:\WPF\ShopApplicationSolution\ShopApplication\bin\Debug\net8.0-windows\ResourceDictionaries.dll
 E:\WPF\ShopApplicationSolution\ShopApplication\bin\Debug\net8.0-windows\ResourceDictionaries.pdb
 E:\WPF\ShopApplicationSolution\ShopApplication\bin\Debug\net8.0-windows\LoadingSpinnerControl.dll
+E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\Views\MessegeView.g.cs
+E:\WPF\ShopApplicationSolution\ShopApplication\obj\Debug\net8.0-windows\Views\MessegeView.baml

@@ -19,7 +19,7 @@ namespace ShopApplication.ViewModels
 	public class MakeProductViewModel : ErrorViewModelBase, INotifyDataErrorInfo
 	{
 		//Edit Constructor
-		public MakeProductViewModel(DataAdapterClient dataAdapterClient, NavigationStore navigationStore, Product p,ShopStore shopStore)
+		public MakeProductViewModel(DataAdapterClient dataAdapterClient, NavigationStore navigationStore, Product p,ShopStore shopStore,MessegeStore messegeStore)
 		{
 			Id = p.Id;
 			ModelNumber = p.ModelNumber;
@@ -30,28 +30,31 @@ namespace ShopApplication.ViewModels
 			DataAdapterClient = dataAdapterClient;
 			NavigationStore = navigationStore;
             ShopStore = shopStore;
+            MessegeStore = messegeStore;
             NavigationService = new(NavigationStore, (obj) =>
             {
-                return new ProductsListingViewModel(DataAdapterClient, NavigationStore,ShopStore);
+                return new ProductsListingViewModel(DataAdapterClient, NavigationStore,ShopStore,MessegeStore);
             });
 			NavigationToProductListingViewCommand = new NavigationCommand<ProductsListingViewModel>(NavigationService);
-            EditProductCommand = new ProductUpdateEditCommand(NavigationService, DataAdapterClient,ShopStore);
+            EditProductCommand = new ProductUpdateEditCommand(NavigationService, DataAdapterClient,ShopStore,MessegeStore);
             LoadCategories();
 		}
 
 		//Insert Constructor
-		public MakeProductViewModel(DataAdapterClient dataAdapterClient, NavigationStore navigationStore, int Count,ShopStore shopStore)
+		public MakeProductViewModel(DataAdapterClient dataAdapterClient, NavigationStore navigationStore, int Count,ShopStore shopStore, MessegeStore messegeStore)
 		{
 			Id = Count + 1;
             ShopStore = shopStore;
+            MessegeStore = messegeStore;
             DataAdapterClient = dataAdapterClient;
 			NavigationStore = navigationStore;
 			NavigationService = new(navigationStore, (obj) =>
 			{
-				return new ProductsListingViewModel(DataAdapterClient, NavigationStore,ShopStore);
+				return new ProductsListingViewModel(DataAdapterClient, NavigationStore,ShopStore, MessegeStore);
 			});
+			MessegeIndicatorViewModel = new();
 			NavigationToProductListingViewCommand = new NavigationCommand<ProductsListingViewModel>(NavigationService);
-			EditProductCommand = new ProductInsertEditCommand(NavigationService, DataAdapterClient,ShopStore);
+			EditProductCommand = new ProductInsertEditCommand(this,NavigationService, DataAdapterClient,ShopStore, MessegeStore);
 			LoadCategories();
 		}
 
@@ -157,6 +160,7 @@ namespace ShopApplication.ViewModels
 		public DataAdapterClient DataAdapterClient { get; }
 		public NavigationStore NavigationStore { get; }
         public ShopStore ShopStore { get; }
+        public MessegeStore MessegeStore { get; }
         public IEnumerable<Category> Categories { get; set; } = Enumerable.Empty<Category>();
 
 		#endregion

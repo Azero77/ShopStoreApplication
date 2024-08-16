@@ -1,4 +1,5 @@
 ﻿using ConfigurationLibrary;
+using ShopApplication.Exceptions;
 using ShopApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,11 @@ namespace ShopApplication.Services
         {
             string sql = "SELECT COUNT(*) FROM Products";
             int Count = await DataAccessClient.ExecuteScaler<int>(sql,null);
+            return Count;
+        }
+        public async Task<int> GetProductsCount(string sql,object param)
+        {
+            int Count = await DataAccessClient.ExecuteScaler<int>(sql, param);
             return Count;
         }
 
@@ -79,6 +85,15 @@ namespace ShopApplication.Services
         }
         public async Task<int> NewProduct(Product product)
         {
+            //Checking if the ModelNumber is taken
+            string tmpsql = "SELECT COUNT(*) FROM Products WHERE ModelNumber = @modelNumber";
+            object param = new { modelNumber = product.ModelNumber };
+            int count = await GetProductsCount(tmpsql, param);
+            if (count != 0)
+            {
+                //There is elements
+                throw new ModelNumberTakenException($"{product.ModelNumber} is Taken");
+            }
             string sql = "INSERT INTO Products " +
                 "(CategoryId, ModelNumber, ModelName, Cost, Description) " +
                 "VALUES (@categoryId, @modelNumber, @cost, @modelName, @description)";

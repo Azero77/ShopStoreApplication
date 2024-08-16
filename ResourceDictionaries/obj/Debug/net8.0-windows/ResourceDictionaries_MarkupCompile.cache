@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 
-21944647970
+3475213009
 
 11828535857
 198-688555687
-Styles\ButtonStyle.xaml;Styles\UserControlStyle.xaml;
+Styles\ButtonStyle.xaml;Styles\StyleSelectors.xaml;Styles\UserControlStyle.xaml;
 
 False
 

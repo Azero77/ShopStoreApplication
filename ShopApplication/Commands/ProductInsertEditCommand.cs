@@ -1,4 +1,5 @@
-﻿using ShopApplication.Models;
+﻿using ShopApplication.Exceptions;
+using ShopApplication.Models;
 using ShopApplication.Services;
 using ShopApplication.Stores;
 using ShopApplication.ViewModels;
@@ -13,9 +14,19 @@ namespace ShopApplication.Commands
 {
     public class ProductInsertEditCommand : ProductEditCommand
     {
-        public ProductInsertEditCommand(NavigationService<ViewModelBase> navigationService, DataAdapterClient dataAdapterClient,ShopStore shopStore) : base(navigationService, dataAdapterClient,shopStore)
+        public ProductInsertEditCommand(ViewModelBase viewModel,
+            NavigationService<ViewModelBase> navigationService,
+            DataAdapterClient dataAdapterClient,
+            ShopStore shopStore,
+            MessegeStore messegeStore) :
+            base(navigationService, dataAdapterClient,shopStore,messegeStore)
         {
+            ViewModel = viewModel;
+            MessegeStore = messegeStore;
         }
+
+        public ViewModelBase ViewModel { get; }
+        public MessegeStore MessegeStore { get; }
 
         public async override void Execute(object? parameter)
         {
@@ -30,11 +41,25 @@ namespace ShopApplication.Commands
                 ProductViewModel.Cost,
                 ProductViewModel.Description
                 );
-            int Result = await DataAdapterClient.NewProduct(SelectedProduct);
-            if (Result != 1)
-                throw new InvalidDataException();
-            ShopStore.CreateElement(SelectedProduct);
-            base.Execute(parameter);
+            try
+            {
+                int Result = await DataAdapterClient.NewProduct(SelectedProduct);
+                if (Result != 1)
+                    throw new InvalidDataException();
+
+                ShopStore.CreateElement(SelectedProduct);
+                base.Execute(parameter);
+
+            }
+            catch (ModelNumberTakenException exception)
+            {
+               MessegeStore.SetMessege(exception.Message, Messege.Error);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
     }
 }
