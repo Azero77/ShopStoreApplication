@@ -25,7 +25,7 @@ namespace ShopApplication.Stores
             Load();
         }
 
-        private async Task Load()
+        public async Task Load()
         {
             await _initialize.Value;
         }

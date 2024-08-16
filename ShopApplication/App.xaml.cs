@@ -30,7 +30,7 @@ namespace ShopApplication
 
         private static ProductsListingViewModel MakeProductsListingViewModel(DataAdapterClient dataAdapterClient, ShopStore shopStore, NavigationStore navigationStore)
         {
-            return new ProductsListingViewModel(dataAdapterClient, navigationStore, shopStore);
+            return ProductsListingViewModel.LoadProductsListringViewModel(dataAdapterClient, navigationStore, shopStore);
         }
     }
 

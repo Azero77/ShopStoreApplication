@@ -6,11 +6,29 @@ using System.Threading.Tasks;
 
 namespace ShopApplication.Commands
 {
-    public class AsyncCommandBase : CommandBase
+    public abstract class AsyncCommandBase : CommandBase
     {
-        public override void Execute(object? parameter)
+        private bool _isExecuting;
+        private bool IsExecuting
         {
-            throw new NotImplementedException();
+            get => _isExecuting;
+            set 
+            {
+                _isExecuting = value;
+                OnCanExecuteChanged();
+            }
         }
+        public override bool CanExecute(object? parameter)
+        {
+            return !IsExecuting && base.CanExecute(parameter);
+        }
+        public override async void Execute(object? parameter)
+        {
+            IsExecuting = true;
+            await ExecuteAsync(parameter);
+            IsExecuting = false;
+        }
+
+        public abstract Task ExecuteAsync(object? parameter);
     }
 }

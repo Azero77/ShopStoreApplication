@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LoadingSpinner.WPF" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ConfigurationLibrary\ConfigurationLibrary.csproj" />
     <ProjectReference Include="..\ResourceDictionaries\ResourceDictionaries.csproj" />
   </ItemGroup>

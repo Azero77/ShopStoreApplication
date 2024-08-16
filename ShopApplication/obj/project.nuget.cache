@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "nrkBpZGWcqQEAoeTw/g1taQhde3xFLlAFISmzQYaCp2R+AF1az8dRLknYFMwfUoWOAMg9kMUGPYAmEAswxq3Sg==",
+  "dgSpecHash": "bwQdLIla4EbYgvF1cpo2T3Qrc84TACeZ3dn2QdToxVJCfUYrHlahqjuW+8cVYB+LsbT+ELyovy9mA7vRlVVaJw==",
   "success": true,
   "projectFilePath": "E:\\WPF\\ShopApplicationSolution\\ShopApplication\\ShopApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mazag\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
+    "C:\\Users\\mazag\\.nuget\\packages\\loadingspinner.wpf\\1.0.0\\loadingspinner.wpf.1.0.0.nupkg.sha512",
     "C:\\Users\\mazag\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\mazag\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\mazag\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\8.0.0\\microsoft.extensions.configuration.fileextensions.8.0.0.nupkg.sha512",

@@ -34,7 +34,21 @@ namespace ShopApplication.ViewModels
         public NavigationStore NavigationStore { get; }
         public ShopStore ShopStore { get; }
 
-        public ProductsListingViewModel(DataAdapterClient dataAdapterClient, NavigationStore navigationStore,ShopStore shopStore)
+		private bool _isLoading;
+		public bool IsLoading
+		{
+			get
+			{
+				return _isLoading;
+			}
+			set
+			{
+				_isLoading = value;
+				OnPropertyChanged(nameof(IsLoading));
+			}
+		}
+
+		public ProductsListingViewModel(DataAdapterClient dataAdapterClient, NavigationStore navigationStore,ShopStore shopStore)
         {
             DataAdapterClient = dataAdapterClient;
             NavigationStore = navigationStore;
@@ -53,8 +67,20 @@ namespace ShopApplication.ViewModels
 			ViewProductCommand = new NavigationCommand<MakeProductViewModel>(
 				MakeProductViewModelNavigationService
 				);
-			
+			LoadProductsCommand = new LoadProductsListingCommand(this, ShopStore);
         }
+        public static ProductsListingViewModel LoadProductsListringViewModel(
+			DataAdapterClient dataAdapterClient,
+			NavigationStore navigationStore,
+			ShopStore shopStore)
+		{
+			ProductsListingViewModel viewModel = new ProductsListingViewModel(
+				dataAdapterClient,
+				navigationStore,
+				shopStore);
+			viewModel.LoadProductsCommand.Execute(null);
+			return viewModel;
+		}
 
         private void ShopStore_CollectionChanged()
         {
@@ -72,6 +98,7 @@ namespace ShopApplication.ViewModels
         }
         #region Commands
         public ICommand ViewProductCommand { get; set; }
+		public ICommand LoadProductsCommand { get; set; }
         #endregion
         /*private async Task InitializeCollection()
         {

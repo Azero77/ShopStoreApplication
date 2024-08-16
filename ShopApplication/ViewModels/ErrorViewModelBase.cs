@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoadingSpinnerControl;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace ShopApplication.ViewModels
 {
+   
     public class ErrorViewModelBase : ViewModelBase,INotifyDataErrorInfo
-    {
+    {   
         public bool HasErrors => _errors.Any();
         public IEnumerable GetErrors(string? propertyName)
         {
