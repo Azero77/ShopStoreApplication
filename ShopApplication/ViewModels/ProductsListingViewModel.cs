@@ -41,6 +41,7 @@ namespace ShopApplication.ViewModels
             ShopStore = shopStore;
             //_ = InitializeCollection();
 			ProductsCollection = new(ShopStore.Products);
+            ShopStore.CollectionChanged += ShopStore_CollectionChanged;
 			MakeProductViewModelNavigationService = new(navigationStore,
 				(obj) => {
 					Product? p = obj as Product;
@@ -54,8 +55,23 @@ namespace ShopApplication.ViewModels
 				);
 			
         }
+
+        private void ShopStore_CollectionChanged()
+        {
+			UpdateProducts();
+        }
+
+        private void UpdateProducts()
+        {
+			ProductsCollection.Clear();
+			foreach (Product product in ShopStore.Products)
+			{
+				ProductsCollection.Add(product);
+			}
+			OnPropertyChanged(nameof(ProductsCollection));
+        }
         #region Commands
-		public ICommand ViewProductCommand { get; set; }
+        public ICommand ViewProductCommand { get; set; }
         #endregion
         /*private async Task InitializeCollection()
         {

@@ -20,12 +20,17 @@ namespace ShopApplication
             DataAdapterClient dataAdapterClient = new(dataAccessClient);
             ShopStore shopStore = new(dataAdapterClient);
             NavigationStore navigationStore = new();
-            navigationStore.CurrentViewModel = new ProductsListingViewModel(dataAdapterClient,navigationStore, shopStore);
+            navigationStore.CurrentViewModel = MakeProductsListingViewModel(dataAdapterClient, shopStore, navigationStore);
             MainWindow window = new MainWindow()
             {
-                DataContext = new MainViewModel(dataAdapterClient,navigationStore)
+                DataContext = new MainViewModel(dataAdapterClient, navigationStore)
             };
             window.Show();
+        }
+
+        private static ProductsListingViewModel MakeProductsListingViewModel(DataAdapterClient dataAdapterClient, ShopStore shopStore, NavigationStore navigationStore)
+        {
+            return new ProductsListingViewModel(dataAdapterClient, navigationStore, shopStore);
         }
     }
 

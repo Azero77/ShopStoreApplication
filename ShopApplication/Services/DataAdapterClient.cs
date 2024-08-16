@@ -23,6 +23,7 @@ namespace ShopApplication.Services
         {
             string sql = "SELECT * FROM Products";
             IEnumerable<Product> result = await DataAccessClient.Query<Product>(sql);
+            await Task.Delay(3000);
             return result;
         }
 

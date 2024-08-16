@@ -13,30 +13,46 @@ namespace ShopApplication.Stores
     {
         private List<Product> _products;
         public List<Product> Products => _products;
-
+        public Lazy<Task> _initialize;
         public DataAdapterClient DataAdapterClient { get; }
+        public event Action CollectionChanged;
 
         public ShopStore(DataAdapterClient dataAdapterClient)
         {
             _products = new List<Product>();
             DataAdapterClient = dataAdapterClient;
-            Load(DataAdapterClient);
+            _initialize = new Lazy<Task>(Initialize);
+            Load();
         }
 
-        private async Task Load(DataAdapterClient dataAdapterClient)
+        private async Task Load()
         {
-            IEnumerable<Product> products = await dataAdapterClient.GetProducts();
+            await _initialize.Value;
+        }
+
+        private async Task Initialize()
+        {
+            IEnumerable<Product> products = await DataAdapterClient.GetProducts();
             Products.Clear();
             Products.AddRange(products);
+            OnCollectionChanged();
         }
 
         public void CreateElement(Product p) 
         {
             Products.Add(p);
+            OnCollectionChanged();
+            
         }
         public void AlterElement(Product p)
         {
             Products.First(product => product.Id == p.Id).EditProduct(p);
+            OnCollectionChanged();
+        }
+
+        public void OnCollectionChanged()
+        { 
+            CollectionChanged?.Invoke();
         }
     }
 }
