@@ -1,0 +1,3 @@
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\bin\Release\net8.0-windows\publish\ResourceDictionaries.dll
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\bin\Release\net8.0-windows\publish\ResourceDictionaries.deps.json
+E:\WPF\ShopApplicationSolution\ResourceDictionaries\bin\Release\net8.0-windows\publish\ResourceDictionaries.pdb

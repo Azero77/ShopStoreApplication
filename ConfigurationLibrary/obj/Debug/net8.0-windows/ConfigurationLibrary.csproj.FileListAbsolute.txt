@@ -11,3 +11,4 @@ E:\WPF\ShopApplicationSolution\ConfigurationLibrary\obj\Debug\net8.0-windows\Con
 E:\WPF\ShopApplicationSolution\ConfigurationLibrary\obj\Debug\net8.0-windows\refint\ConfigurationLibrary.dll
 E:\WPF\ShopApplicationSolution\ConfigurationLibrary\obj\Debug\net8.0-windows\ConfigurationLibrary.pdb
 E:\WPF\ShopApplicationSolution\ConfigurationLibrary\obj\Debug\net8.0-windows\ref\ConfigurationLibrary.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Debug\net8.0-windows\DataBase\Shop.accdb

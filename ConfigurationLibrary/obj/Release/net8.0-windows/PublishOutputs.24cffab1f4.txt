@@ -1,0 +1,16 @@
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\DataBase\Shop.accdb
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\appSettings.json
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\ConfigurationLibrary.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\ConfigurationLibrary.deps.json
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\ConfigurationLibrary.pdb
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\Dapper.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\Microsoft.Extensions.Configuration.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\Microsoft.Extensions.Configuration.FileExtensions.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\Microsoft.Extensions.Configuration.Json.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\Microsoft.Extensions.FileProviders.Abstractions.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\Microsoft.Extensions.FileProviders.Physical.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\Microsoft.Extensions.FileSystemGlobbing.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\Microsoft.Extensions.Primitives.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\System.Data.OleDb.dll
+E:\WPF\ShopApplicationSolution\ConfigurationLibrary\bin\Release\net8.0-windows\publish\runtimes\win\lib\net8.0\System.Data.OleDb.dll

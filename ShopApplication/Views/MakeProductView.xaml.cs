@@ -31,8 +31,24 @@ namespace ShopApplication.Views
 
         private void UserControl_Error(object sender, ValidationErrorEventArgs e)
         {
-            if (e.Action == ValidationErrorEventAction.Added)
-                SubmitButton.IsEnabled = false;
+                SubmitButton.IsEnabled = !GetValidationErrors(this).Any();
+        }
+
+        private List<ValidationError> GetValidationErrors(DependencyObject obj)
+        {
+            List<ValidationError> errors = new List<ValidationError>();
+
+            // Check if the current object has validation errors
+            errors.AddRange(Validation.GetErrors(obj));
+
+            // Recursively check all children
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                errors.AddRange(GetValidationErrors(child));
+            }
+
+            return errors;
         }
     }
 }

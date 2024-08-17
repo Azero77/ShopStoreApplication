@@ -1,4 +1,8 @@
 ﻿using ConfigurationLibrary;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using ShopApplication.Services;
 using ShopApplication.Stores;
 using ShopApplication.ViewModels;
@@ -13,19 +17,44 @@ namespace ShopApplication
     /// </summary>
     public partial class App : Application
     {
+        IHost _host;
         
+        public App()
+        {
+            _host = Host.CreateDefaultBuilder()
+                .ConfigureServices(services => 
+                {
+                    services.AddSingleton<DataAccessClient>();
+                    services.AddSingleton<DataAdapterClient>();
+                    services.AddSingleton<ShopStore>();
+                    services.AddSingleton<NavigationStore>((ser) =>
+                    {
+                        NavigationStore store = new();
+                        store.CurrentViewModel = MakeProductsListingViewModel(
+                                ser.GetRequiredService<DataAdapterClient>(),
+                                ser.GetRequiredService<ShopStore>(),
+                                store,
+                                ser.GetRequiredService<MessegeStore>()
+                                );
+                        return store;
+                    });
+                    services.AddSingleton<MessegeViewModel>();
+                    services.AddSingleton<MessegeStore>();
+                    services.AddSingleton<MainViewModel>();
+                    services.AddSingleton<MainWindow>(s => 
+                    {
+                        return new MainWindow()
+                        {
+                            DataContext = s.GetRequiredService<MainViewModel>()
+                        };
+                    });
+                })
+                .Build();
+        }
         protected override void OnStartup(StartupEventArgs e)
         {
-            DataAccessClient dataAccessClient = new();
-            DataAdapterClient dataAdapterClient = new(dataAccessClient);
-            ShopStore shopStore = new(dataAdapterClient);
-            NavigationStore navigationStore = new();
-            MessegeStore messegeStore = new(new MessegeViewModel());
-            navigationStore.CurrentViewModel = MakeProductsListingViewModel(dataAdapterClient, shopStore, navigationStore, messegeStore);
-            MainWindow window = new MainWindow()
-            {
-                DataContext = new MainViewModel(dataAdapterClient, navigationStore, messegeStore)
-            };
+            _host.Start();
+            MainWindow window = _host.Services.GetRequiredService<MainWindow>();
             window.Show();
         }
 
@@ -35,6 +64,12 @@ namespace ShopApplication
             MessegeStore messegeStore)
         {
             return ProductsListingViewModel.LoadProductsListringViewModel(dataAdapterClient, navigationStore, shopStore, messegeStore);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _host.Dispose();
+            base.OnExit(e);
         }
     }
 
